@@ -1,60 +1,55 @@
 import java.util.Scanner;
 
-class A {
-    public void Length() {
-        System.out.println("Welcome To Line Comparison Program");
-        // Creates an object of Scanner
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter the Values");
-        //Given input value
-        Integer x1 = input.nextInt();
-        Integer x2 = input.nextInt();
-        Integer y1 = input.nextInt();
-        Integer y2 = input.nextInt();
-
-        Integer a1 = input.nextInt();
-        Integer a2 = input.nextInt();
-        Integer b1 = input.nextInt();
-        Integer b2 = input.nextInt();
-
-        //Length of line calculation
-        Double lengthOne = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-        Double lengthTwo = Math.sqrt((a2 - a1) * (a2 - a1) + (b2 - b1) * (b2 - b1));
-
-        //Given equal operator
-        if (lengthOne == lengthTwo) {
-            System.out.println("Equal ");
-        } else {
-            System.out.println("Not Equal");
-        }
-   }
-}
-
 public class LineComparison {
-    public static void main(String[] args)
-    {
-        A lengthOne=new A();
-        A lengthTwo=new A();
-        A a1=new A();
-        a1.Length();
 
-        if(lengthOne.equals(lengthTwo)){
-            System.out.println("Equal");
-        }else{
-            System.out.println("Not Equal");
-        }
+	// Method to find the length of line
+	public double findLength(int x1, int x2, int y1, int y2) {
 
-        //Given compare two value and use compareTo method
-        boolean diffInLength = lengthOne.equals(lengthTwo);
-        if (diffInLength == true) {
-            System.out.println("Equal of line length");
-        } else if (diffInLength = false) {
-            System.out.println("Line1 is greater in length than lengthOne ");
-        } else {
-            System.out.println("Line1 is smaller in length than lengthTwo ");
+		double lenght_of_line = Math.sqrt(Math.pow((x2 - x1), 2) + (Math.pow((y2 - y1), 2)));
+		return lenght_of_line;
+	}
 
-        }
+	// Method to compare two lines
+	public void compareTo(double lineOne, double lineTwo) {
+
+		if (lineOne == lineTwo)
+			System.out.println("Two lines are equal");
+		else if (lineOne > lineTwo)
+			System.out.println("Two lines are not equal and length of LineOne is greater than lineTwo");
+		else
+			System.out.println("Two lines are not equal and length of LineTwo is greater than lineOne");
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Welcome to Line comparison Computation program");
 
 
-    }
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter lineOne coordinates: x1, x2, y1, y2");
+		int x1 = sc.nextInt();
+		int x2 = sc.nextInt();
+		int y1 = sc.nextInt();
+		int y2 = sc.nextInt();
+
+		System.out.println("Enter lineTwo coordinates: a1, a2, b1, b2");
+		int a1 = sc.nextInt();
+		int a2 = sc.nextInt();
+		int b1 = sc.nextInt();
+		int b2 = sc.nextInt();
+
+		LineComparison lineCompare = new LineComparison();
+
+		//Calling methods to find length and compare two lines
+		double lengthOfLine1 = lineCompare.findLength(x1, x2, y1, y2);
+		System.out.println("Length of lineOne is " + lengthOfLine1);
+
+		double lengthOfLine2 = lineCompare.findLength(a1, a2, b1, b2);
+		System.out.println("Length of lineTwo is " + lengthOfLine2);
+
+		lineCompare.compareTo(lengthOfLine1, lengthOfLine2);
+		sc.close();
+
+	}
+
 }
